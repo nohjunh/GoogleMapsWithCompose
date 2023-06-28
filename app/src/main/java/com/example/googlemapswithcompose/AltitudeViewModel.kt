@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
+
 @HiltViewModel
 class AltitudeViewModel @Inject constructor(
     @ApplicationContext application: Context,

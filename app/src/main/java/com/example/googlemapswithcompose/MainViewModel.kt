@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
+import java.lang.Thread.sleep
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,7 +18,7 @@ class MainViewModel @Inject constructor(
         try {
             val locationResult = fusedLocationProviderClient.lastLocation
             locationResult.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+                if (task.isSuccessful && task.result != null) {
                     Timber.tag("GOOGLE LOCATION").e("고도: ${task.result.altitude}")
                     Timber.tag("GOOGLE LOCATION").e("위도: ${task.result.latitude}")
                     Timber.tag("GOOGLE LOCATION").e("경도: ${task.result.longitude}")
